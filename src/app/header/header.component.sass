@@ -1,0 +1,63 @@
+@use '../../styles.sass' as global
+
+.container
+  display: flex
+  flex-direction: row
+  width: 100vw
+  justify-content: space-around
+  align-items: center
+  margin-top: 20px
+
+.searchbar-container
+  display: flex
+  align-items: center
+  justify-content: center
+  margin: 0 20px
+
+.searchbar-input
+  background-color: global.$bg-color
+  width: 660px
+  height: 54px
+  border-radius: 40px
+  font-family: global.$font-familly
+  color: global.$font-color
+  font-size: 18px
+  padding: 2px
+  border: 0.5px, solid global.$border-color
+  &::placeholder
+    text-align: center
+    font-family: global.$font-familly
+    font-size: 18px
+    color: global.$alt-font-color !important
+    opacity: 0.6
+    font-style: italic
+  &:focus
+    outline: none
+    padding: 4px
+
+.logo
+  display: flex
+  flex-direction: row
+  border: none
+  width: 272px
+  height: 48px
+.logo-text
+  color: global.$font-color
+  font-size: 22px
+  font-family: global.$alt-font-familly
+.logo-icon
+  color: #FF0033
+  font-size: 48px
+
+.btn
+  border: none
+
+mat-icon
+  color: global.$icon-color
+  font-size: 36px
+  width: 50px
+  height: 50px
+  text-align: center
+
+mat-icon.logo-icon, mat-icon.accIcon
+  color: global.$logo-icon-color
