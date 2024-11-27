@@ -1,0 +1,15 @@
+<div class="container">
+  <ul class="cards">
+    @for(video of videos; track video.id) {
+    <li class="card">
+      <button [routerLink]="['/view', video.id]">
+        <img [src]="video.thumbnail" alt="{{video.title}}" class="card-thumbnail">
+        <div class="card-info">
+          <p class="card-info_title">{{video.title}}</p>
+          <span class="card-info_views">Visualizações: {{video.views}}</span>
+        </div>
+      </button>
+    </li>
+    }
+  </ul>
+</div>

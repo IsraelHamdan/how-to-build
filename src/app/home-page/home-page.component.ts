@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api-service.service';
 import { VideoDTO } from '../../interfaces/videoDTO';
 import { RouterLink } from '@angular/router';
+import { VideoCardsComponent } from '../video-cards/video-cards.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [VideoCardsComponent, SidebarComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.sass',
 })
