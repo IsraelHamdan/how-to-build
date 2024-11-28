@@ -1,4 +1,5 @@
-@use '../../styles.sass' as global
+@use '../../../styles.sass' as global
+
 .container
   display: flex
   justify-content: center
@@ -58,3 +59,11 @@
   font-size: 14px
   color: global.$alt-font-color
   font-family: global.$font-familly
+
+@media(max-width: 768px)
+  .card
+    flex: 1 1 calc( 50% - 20px )
+
+@media(max-width)
+  .card
+    flex: 1 1 100%

@@ -1,0 +1,18 @@
+@if(video) {
+<div class="container">
+  <div class="player">
+    <iframe [src]="getYoutubeEmbedUrl() | safeUrl" frameborder="0" width="800" height="450"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+      class="frame">
+    </iframe>
+    <div class="details">
+      <h1 class="videoTitle">{{video.title}}</h1>
+      <div class="description">
+        <p class="description-video">{{video.description}}</p>
+        <span class="description-views">{{video.views}}</span>
+        <span class="description-uploadedAt">{{video.views}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+}

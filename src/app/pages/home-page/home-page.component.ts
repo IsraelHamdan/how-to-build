@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api-service.service';
-import { VideoDTO } from '../../interfaces/videoDTO';
+import { VideoDTO } from '@interfaces/videoDTO';
 import { RouterLink } from '@angular/router';
-import { VideoCardsComponent } from '../video-cards/video-cards.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SidebarComponent } from '@components/sidebar/sidebar.component';
+import { ApiService } from '@services/api/api-service.service';
+import { VideoCardsComponent } from '@pages/video-cards/video-cards.component';
 
 @Component({
   selector: 'app-home-page',

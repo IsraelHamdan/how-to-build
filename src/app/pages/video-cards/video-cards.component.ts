@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { VideoDTO } from '../../interfaces/videoDTO';
-import { ApiService } from '../api-service.service';
+import { VideoDTO } from '@interfaces/videoDTO';
+import { ApiService } from '@services/api/api-service.service';
 
 @Component({
   selector: 'app-video-cards',

@@ -1,0 +1,32 @@
+<header class="container">
+  <button class="btn btn-sidebar">
+    <mat-icon class="mat-icon sidebar">
+      clear_all
+    </mat-icon>
+  </button>
+  <div class="logo">
+    <img [src]="logoSrc" alt="logo" class="logo">
+  </div>
+  <div class="searchContainer">
+    <input type="text" class="searchbar-input" placeholder="busque videos aqui" [(ngModel)]="searchTerm"
+      (input)="onSearchInput($event)">
+    <div class="search-results">
+      @if(searchResults.length > 0) {
+      <ul class="search-results_list">
+        @for(result of searchResults; track result.id) {
+        <li class="search-result_item" [routerLink]="['/results']">{{result.title}}</li>
+        }
+      </ul>
+      }
+
+    </div>
+  </div>
+  <div class="profile">
+    <button class=" btn profile-btn">
+      <mat-icon class="mat-icon accIcon">
+        account_circle_outlined
+      </mat-icon>
+    </button>
+    <!-- <div class="profile-dropdown"></div> -->
+  </div>
+</header>

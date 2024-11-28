@@ -1,22 +1,23 @@
-@use '../../styles.sass' as global
+@use '../../../styles.sass' as global
 
 .container
   display: flex
   flex-direction: row
   width: 100vw
-  justify-content: space-around
+  justify-content: space-between
   align-items: center
   margin-top: 20px
 
-.searchbar-container
+.searchContainer
   display: flex
   align-items: center
   justify-content: center
-  margin: 0 20px
+  flex-direction: column
+  margin: 0 auto
 
 .searchbar-input
   background-color: global.$bg-color
-  width: 660px
+  width: 550px
   height: 54px
   border-radius: 40px
   font-family: global.$font-familly
@@ -33,7 +34,31 @@
     font-style: italic
   &:focus
     outline: none
+
     padding: 4px
+
+.search-results
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  width: 550px
+  border-radius: 15px
+  background-color: global.$card-color
+
+.search-results_list
+  background-color: global.$card-color
+  font-family: global.$font-familly
+  color: global.$font-color
+  font-size: 12px
+
+.search-results_item
+  background-color: global.$card-color
+  font-family: global.$font-familly
+  color: global.$font-color
+  border-bottom: 1px solid #e0e0e0
+  &:last-child
+    border-bottom: none // Remove o separador do último item
 
 .logo
   display: flex
@@ -41,13 +66,6 @@
   border: none
   width: 272px
   height: 48px
-.logo-text
-  color: global.$font-color
-  font-size: 22px
-  font-family: global.$alt-font-familly
-.logo-icon
-  color: #FF0033
-  font-size: 48px
 
 .btn
   border: none
