@@ -18,15 +18,33 @@
         }
       </ul>
       }
-
     </div>
   </div>
   <div class="profile">
-    <button class=" btn profile-btn">
+    @if(isAuthenticated$) {
+    <img [src]="(user$)?.picture" alt="user-profile" class="user-mg">
+    <button class="dropdown-btn">
+      <div class="dropdown-content">
+        <button class="dropdown-item" [routerLink]="['user:id/profile']">Perfil</button>
+        <button class="dropdown-item" [routerLink]="['user:id/history']">Histórico</button>
+        <button class="dropdown-item" [routerLink]="['user:id/favorites']">Favoritos</button>
+        <button class="dropdown-item logout-btn" (click)="logout()">Sair</button>
+      </div>
+    </button>
+    } @else {
+    <button class=" btn profile-btn dropdown-btn">
       <mat-icon class="mat-icon accIcon">
         account_circle_outlined
       </mat-icon>
+      @if(isDropdown === true) {
+      <div class="dropdown-content">
+        <button class="dropdown-item login-btn" (click)="login()">login</button>
+      </div>
+      }
+
     </button>
+    }
+
     <!-- <div class="profile-dropdown"></div> -->
   </div>
 </header>

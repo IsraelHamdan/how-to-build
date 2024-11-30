@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 import { ResultSearchDTO } from '@interfaces/resultSearchDTO';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '@services/api/api-service.service';
+import { AuthService } from '@auth0/auth0-angular';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -13,15 +14,40 @@ import { ApiService } from '@services/api/api-service.service';
   styleUrl: './header.component.sass',
 })
 export class HeaderComponent implements OnInit {
-  logoSrc: string = 'assets/Logo.svg';
-  searchTerm: string = '';
-  searchResults: ResultSearchDTO[] = [];
+  protected logoSrc: string = 'assets/Logo.svg';
+  protected searchTerm: string = '';
+  protected searchResults: ResultSearchDTO[] = [];
   private searchSubject = new Subject<string>();
+  isAuthenticated$: boolean = false;
+  user$: any = null;
+  isDropdown: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private authService: AuthService,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
+    this.authService.isAuthenticated$.subscribe({
+      next: (isAuthenticated) => {
+        this.isAuthenticated$ = isAuthenticated;
+      },
+      error: (err) => console.error(`Erro ao verificar autenticação ${err}`),
+    });
+    this.authService.user$.subscribe({
+      next: (user) => {
+        this.user$ = user;
+      },
+      error: (err) => console.log(`Erro ao carrear o usuário`),
+    });
     this.setupSearchListner();
+  }
+
+  protected login(): void {
+    this.authService.loginWithRedirect();
+  }
+  protected logout(): void {
+    this.authService.logout();
   }
 
   private setupSearchListner(): void {

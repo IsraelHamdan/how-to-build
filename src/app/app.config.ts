@@ -23,6 +23,18 @@ export const appConfig: ApplicationConfig = {
         scope: 'openId profile email read:user user:email',
         audience: 'https://dev-qj5svwcz8goxynls.us.auth0.com/api/v2/',
       },
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri: 'http://localhost:3000/*',
+          },
+        ],
+      },
     }),
+    {
+      provide: AuthHttpInterceptor,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
   ],
 };
