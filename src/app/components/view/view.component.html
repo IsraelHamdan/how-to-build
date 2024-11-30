@@ -1,16 +1,17 @@
 @if(video) {
 <div class="container">
   <div class="player">
-    <iframe [src]="getYoutubeEmbedUrl() | safeUrl" frameborder="0" width="800" height="450"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
-      class="frame">
+    <iframe class="video-player" [src]="getYoutubeEmbedUrl()" frameborder="0" width="1000" height="500"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
     </iframe>
-    <div class="details">
-      <h1 class="videoTitle">{{video.title}}</h1>
-      <div class="description">
-        <p class="description-video">{{video.description}}</p>
-        <span class="description-views">{{video.views}}</span>
-        <span class="description-uploadedAt">{{video.views}}</span>
+    <div class="video-details">
+      <h1 class="video-details_title">{{video.title}}</h1>
+      <div class="video-details_description">
+        <p class="video-details_desciption-desc">Descrição ...
+          {{video.description}}
+        </p>
+        <span class="video-details_desciption-viws">Visualizações: {{video.views}}</span>
+        <span class="video-details_desciption-createdAt">Video postado em: {{video.uploadedAt}}</span>
       </div>
     </div>
   </div>

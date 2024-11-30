@@ -13,7 +13,7 @@ import { ApiService } from '@services/api/api-service.service';
   styleUrl: './header.component.sass',
 })
 export class HeaderComponent implements OnInit {
-  logoSrc: string = 'assets/logo.svg';
+  logoSrc: string = '../../../../public/assets/Logo.svg';
   searchTerm: string = '';
   searchResults: ResultSearchDTO[] = [];
   private searchSubject = new Subject<string>();

@@ -24,7 +24,6 @@ export class HomePageComponent {
   loadVideos() {
     this.apiService.getVideos().subscribe((data: VideoDTO[]) => {
       this.videos = data;
-      console.log(this.videos);
     });
   }
 }
