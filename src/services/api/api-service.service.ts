@@ -27,16 +27,4 @@ export class ApiService {
   getVideo(id: number): Observable<VideoDTO> {
     return this.http.get<VideoDTO>(`${this.api}/videos/${id}`);
   }
-
-  getUsers(): Observable<UserDTO[]> {
-    return this.http.get<UserDTO[]>(`${this.api}/users`);
-  }
-
-  getUser(id: number): Observable<UserDTO> {
-    return this.http.get<UserDTO>(`${this.api}/users/${id}`);
-  }
-
-  getFavorites(): Observable<FavoriteDTO[]> {
-    return this.http.get<FavoriteDTO[]>(`${this.api}/favorites`);
-  }
 }
