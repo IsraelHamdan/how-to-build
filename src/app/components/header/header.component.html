@@ -1,12 +1,18 @@
 <header class="container">
-  <button class="btn btn-sidebar">
-    <mat-icon class="mat-icon sidebar">
-      clear_all
-    </mat-icon>
-  </button>
   <div class="logo">
-    <img [src]="logoSrc" alt="logo" class="logo">
+    <h3 class="logo-txt">MyVideos</h3>
+    <mat-icon class="logo-icon">animated_images</mat-icon>
   </div>
+
+  @if(isMobile) {
+  <button class="search-btn" (click)="toggleSearchBox()">
+    <mat-icon class="search-icon">search</mat-icon>
+  </button>
+  @if (showSearchBox) {
+  <input type="text" class="searchbar-input" placeholder="Busque videos aqui!" [(ngModel)]="searchTerm"
+    (input)="onSearchInput($event)">
+  }
+  } @else {
   <div class="searchContainer">
     <input type="text" class="searchbar-input" placeholder="busque videos aqui" [(ngModel)]="searchTerm"
       (input)="onSearchInput($event)">
@@ -20,19 +26,22 @@
       }
     </div>
   </div>
+  }
   <div class="profile">
     @if(isAuthenticated$) {
-    <img [src]="(user$)?.picture" alt="user-profile" class="user-mg">
-    <button class="dropdown-btn">
+    <button class="dropdown-btn" (click)="toggleDropdown($event)">
+      <img [src]="(user$)?.picture" alt="user-profile" class="user-img">
+      @if (isDropdown === true) {
       <div class="dropdown-content">
-        <button class="dropdown-item" [routerLink]="['user:id/profile']">Perfil</button>
-        <button class="dropdown-item" [routerLink]="['user:id/history']">Histórico</button>
-        <button class="dropdown-item" [routerLink]="['user:id/favorites']">Favoritos</button>
+        <button class="dropdown-item" [routerLink]="['/user', user$.id, 'profile']">Perfil</button>
+        <button class="dropdown-item" [routerLink]="['/user', user$.id, 'history']">Histórico</button>
+        <button class="dropdown-item" [routerLink]="['/user', user$.id, 'favorites']">Favoritos</button>
         <button class="dropdown-item logout-btn" (click)="logout()">Sair</button>
       </div>
+      }
     </button>
     } @else {
-    <button class=" btn profile-btn dropdown-btn">
+    <button class=" btn profile-btn dropdown-btn" (click)="toggleDropdown($event)">
       <mat-icon class="mat-icon accIcon">
         account_circle_outlined
       </mat-icon>
@@ -41,10 +50,7 @@
         <button class="dropdown-item login-btn" (click)="login()">login</button>
       </div>
       }
-
     </button>
     }
-
-    <!-- <div class="profile-dropdown"></div> -->
   </div>
 </header>

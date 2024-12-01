@@ -3,10 +3,20 @@
 .container
   display: flex
   flex-direction: row
-  width: 100vw
+  width: 100%
   justify-content: space-between
   align-items: center
   margin-top: 20px
+
+.logo
+  display: flex
+  align-items: center
+  justify-content: flex-start
+  .logo-txt
+    text-align: center
+    color: global.$font-color
+    font-family: global.$alt-font-familly
+    font-size: 30px
 
 .searchContainer
   display: flex
@@ -14,6 +24,9 @@
   justify-content: center
   flex-direction: column
   margin: 0 auto
+  flex: 2
+@media (max-width: 769px)
+  display: none
 
 .searchbar-input
   background-color: global.$bg-color
@@ -34,48 +47,138 @@
     font-style: italic
   &:focus
     outline: none
-
     padding: 4px
 
-.search-results
+.searchbar-input
+  width: 100%
+  font-family: global.$font-familly
+  color: global.$font-color
+  font-size: 18px
+  padding: 0.5rem
+  border: 0.5px, solid global.$border-color
+  font-size: 14px
+  &::placeholder
+    text-align: center
+    font-family: global.$font-familly
+    font-size: 14px
+    color: global.$alt-font-color !important
+    opacity: 0.6
+    font-style: italic
+  &:focus
+    outline: none
+    padding: 4px
+
+  .search-results
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    width: 550px
+    border-radius: 15px
+    background-color: global.$card-color
+
+  .search-results_list
+    background-color: global.$card-color
+    font-family: global.$font-familly
+    color: global.$font-color
+    font-size: 12px
+
+  .search-results_item
+    background-color: global.$card-color
+    font-family: global.$font-familly
+    color: global.$font-color
+    border-bottom: 1px solid #e0e0e0
+    &:last-child
+      border-bottom: none // Remove o separador do último item
+
+.profile
+  position: relative
   display: flex
   align-items: center
   justify-content: center
-  flex-direction: column
-  width: 550px
-  border-radius: 15px
-  background-color: global.$card-color
-
-.search-results_list
-  background-color: global.$card-color
-  font-family: global.$font-familly
-  color: global.$font-color
-  font-size: 12px
-
-.search-results_item
-  background-color: global.$card-color
-  font-family: global.$font-familly
-  color: global.$font-color
-  border-bottom: 1px solid #e0e0e0
-  &:last-child
-    border-bottom: none // Remove o separador do último item
+  flex: 1
+  .user-img
+    width: 40px
+    height: 40px
+    border-radius: 50%
+    border: none
+    background-color: global.$bg-color
 
 .logo
   display: flex
   flex-direction: row
   border: none
-  width: 272px
-  height: 48px
 
 .btn
   border: none
+  background: none
+  cursor: pointer
 
 mat-icon
-  color: global.$icon-color
   font-size: 36px
   width: 50px
   height: 50px
   text-align: center
 
-mat-icon.logo-icon, mat-icon.accIcon
+mat-icon.logo-icon
   color: global.$logo-icon-color
+
+mat-icon.logo-icon, mat-icon.accIcon, mat-icon.search-icon
+  color: global.$logo-icon-color
+
+.dropdown-content
+  position: absolute
+  background-color: global.$card-color
+  border: 1px solid global.$border-color
+  border-radius: 4px
+  padding: 10px
+  display: flex
+  flex-direction: column
+  z-index: 1
+  top: 100%
+  left: 0
+
+  .dropdown-item
+    padding: 5px 10px
+    cursor: pointer
+    font-family: global.$font-familly
+    color: global.$font-color
+    &:hover
+      background-color: #f0f0f0
+
+.user-img
+  width: 40px
+  height: 40px
+  border-radius: 50%
+
+@media (max-width: 768px)
+  .searchContainer
+    display: none
+
+  .search-toggle
+    display: block
+    background: none
+    border: none
+    font-size: 1.5rem
+
+  .logo-img
+    max-width: 90px
+
+  .searchbar-input
+    width: 100%
+    font-family: global.$font-familly
+    color: global.$font-color
+    font-size: 18px
+    padding: 0.5rem
+    border: 0.5px, solid global.$border-color
+    font-size: 14px
+    &::placeholder
+      text-align: center
+      font-family: global.$font-familly
+      font-size: 14px
+      color: global.$alt-font-color !important
+      opacity: 0.6
+      font-style: italic
+    &:focus
+      outline: none
+      padding: 4px

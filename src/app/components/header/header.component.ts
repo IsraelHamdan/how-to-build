@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
@@ -18,14 +18,41 @@ export class HeaderComponent implements OnInit {
   protected searchTerm: string = '';
   protected searchResults: ResultSearchDTO[] = [];
   private searchSubject = new Subject<string>();
-  isAuthenticated$: boolean = false;
-  user$: any = null;
-  isDropdown: boolean = false;
+  protected isAuthenticated$: boolean = false;
+  protected user$: any = null;
+  protected isDropdown: boolean = false;
+  protected isMobile: boolean = false;
+  protected showSearchBox: boolean = false;
 
   constructor(
     private authService: AuthService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private elementRef: ElementRef
   ) {}
+
+  toggleDropdown(event: Event): void {
+    event.stopPropagation();
+    this.isDropdown = !this.isDropdown;
+  }
+
+  checkScreenSize(): void {
+    this.isMobile = window.innerWidth <= 768;
+  }
+
+  toggleSearchBox(): void {
+    this.showSearchBox = !this.showSearchBox;
+  }
+
+  @HostListener('document: click', ['$event'])
+  onDocumentClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    if (!this.elementRef.nativeElement.contains(target))
+      this.isDropdown = false;
+  }
+  @HostListener('window:resize')
+  onResize(): void {
+    this.checkScreenSize();
+  }
 
   ngOnInit(): void {
     this.authService.isAuthenticated$.subscribe({
@@ -38,7 +65,7 @@ export class HeaderComponent implements OnInit {
       next: (user) => {
         this.user$ = user;
       },
-      error: (err) => console.log(`Erro ao carrear o usuário`),
+      error: (err) => console.log(`Erro ao carrear o usuário ${err}`),
     });
     this.setupSearchListner();
   }
@@ -60,7 +87,6 @@ export class HeaderComponent implements OnInit {
       .subscribe({
         next: (results) => {
           this.searchResults = results;
-          console.log(`Resultados atualizados: ${this.searchResults}`);
         },
         error: (err) => {
           console.error(`Erro na busca: ${err}`);
@@ -69,7 +95,6 @@ export class HeaderComponent implements OnInit {
   }
   onSearchInput(event: Event): void {
     const query = (event.target as HTMLInputElement).value;
-    console.log('🚀 ~ HeaderComponent ~ onSearchInput ~ query:', query);
 
     if (query.length > 0) {
       this.searchSubject.next(query);

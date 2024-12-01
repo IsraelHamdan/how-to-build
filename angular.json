@@ -90,7 +90,8 @@
                 "input": "public"              }
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "src/assets/material-icons.css"
             ],
             "scripts": []
           }
